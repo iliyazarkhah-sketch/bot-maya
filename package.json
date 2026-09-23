@@ -1,0 +1,8 @@
+{
+  "name": "telegram-order-bot",
+  "version": "1.0.0",
+  "description": "ربات تلگرامی ثبت سفارش و گفتگوی پشتیبانی با Netlify Functions",
+  "dependencies": {
+    "@netlify/blobs": "^7.3.0"
+  }
+}
