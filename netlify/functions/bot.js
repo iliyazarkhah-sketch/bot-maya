@@ -45,9 +45,18 @@ const answerCallback = (id, text) =>
 
 // ---------- ذخیره‌سازی (Netlify Blobs) ----------
 
-const sessionsStore = () => getStore('bot-sessions');
-const ordersStore = () => getStore('bot-orders');
-const metaStore = () => getStore('bot-meta');
+function store(name) {
+  const siteID = process.env.SITE_ID;
+  const token = process.env.NETLIFY_BLOBS_TOKEN;
+  if (siteID && token) {
+    return getStore({ name, siteID, token });
+  }
+  return getStore(name);
+}
+
+const sessionsStore = () => store('bot-sessions');
+const ordersStore = () => store('bot-orders');
+const metaStore = () => store('bot-meta');
 
 async function getSession(chatId) {
   const raw = await sessionsStore().get(String(chatId));
